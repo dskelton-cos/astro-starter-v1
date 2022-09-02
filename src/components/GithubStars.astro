@@ -1,0 +1,20 @@
+---
+import EleventyFetch from '@11ty/eleventy-fetch';
+let json 
+ try {
+    json = await EleventyFetch(
+      'https://api.github.com/repos/11ty/eleventy',
+      {
+        duration: '10m',
+        type: 'json',
+        verbose: true,
+        directory: '.cache/eleventy-fetch/github/'
+      }
+    );
+
+  } catch (e) {
+    console.log('Failed getting GitHub stargazers count', e);
+  }
+---
+
+{json.stargazers_count}

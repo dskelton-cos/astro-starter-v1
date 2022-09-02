@@ -4,7 +4,7 @@ async function fetch11ty(url) {
   let addr = new URL(url);
   try {
     let json = await EleventyFetch(url, {
-      duration: '10m',
+      duration: '30m',
       type: 'json',
       verbose: true,
       directory: `.cache/eleventy-fetch/${addr.host}/`,

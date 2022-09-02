@@ -1,0 +1,37 @@
+---
+import { SITE } from "../../config.mjs";
+
+const {
+  title = SITE.name,
+  description = "",
+  canonical,
+  noindex = false,
+  nofollow = false
+} = Astro.props;
+
+//https://github.com/dskelton-cos/astrowind/blob/570cf904c4ea42e7f5ad25b5d6784b5e34c5c443/src/components/core/MetaTags.astro
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{canonical && <link rel="canonical" href={canonical} />}
+
+<meta name="robots" content={`${noindex ? "noindex": "index"}, ${nofollow ? "nofollow" : "follow"}`} />
+
+
+<!-- Facebook Meta Tags -->
+{canonical &&
+<meta property="og:url" content={canonical} />}
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+
+
+<!-- Google Site Verification -->
+{SITE.googleSiteVerificationId &&
+<meta name="google-site-verification" content={SITE.googleSiteVerificationId} />}

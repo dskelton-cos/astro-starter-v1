@@ -1,7 +1,10 @@
 ---
 // Component Imports
-import Button from '../components/Button.astro';
-import GithubStars from '../components/GithubStars.astro';
+import Button from '@components/Button.astro';
+import GithubStars from '@components/GithubStars.astro';
+import {fetch11ty} from '@lib/fetch11ty'
+
+let stars = await fetch11ty('https://api.github.com/repos/11ty/eleventy');
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -20,7 +23,10 @@ import GithubStars from '../components/GithubStars.astro';
 		<div class="grid place-items-center h-screen content-center">
 			<Button>Tailwind Button in Astro!</Button>
 			<GithubStars />
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+
+			{stars.stargazers_count}
+
+			<a href="/markdown-page" class="p-4 underline">Markdown MDX is also supported...</a>
 		</div>
 	</body>
 </html>

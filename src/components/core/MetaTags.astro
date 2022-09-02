@@ -1,5 +1,12 @@
 ---
 import { SITE } from "../../config.mjs";
+import { getImage } from "@astrojs/image";
+
+const { src: defaultImage } = await getImage({
+  src: import("~/assets/images/default.png"),
+  width: 1200,
+  height: 628,
+});
 
 const {
   title = SITE.name,
